@@ -1,29 +1,3 @@
 FROM nginx:alpine
 COPY index.html /usr/share/nginx/html/index.html
 
-Step 5: GitHub Actions Workflow
-
-.github/workflows/ci.yml
-
-name: CI/CD Demo
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build-and-deploy:
-    runs-on: self-hosted
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Build Docker Image
-      run: docker build -t demo-web .
-
-    - name: Deploy Container
-      run: |
-        docker rm -f demo-web || true
-        docker run -d -p 80:80 --name demo-web demo-web
-
