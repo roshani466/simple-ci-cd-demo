@@ -19,3 +19,4 @@ jobs:
       run: |
         docker rm -f demo-web || true
         docker run -d -p 80:80 --name demo-web demo-web
+
